@@ -2,9 +2,6 @@ ARG VERSION=v0.15.0-beta
 
 FROM golang:1.15-alpine as builder
 
-# Copy in the local repository to build from.
-COPY . /go/src/github.com/lightningnetwork/loop
-
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
 ENV GODEBUG netdns=cgo
