@@ -1,4 +1,3 @@
-
 ARG VERSION=v0.15.0-beta
 
 FROM golang:1.15-alpine as builder
