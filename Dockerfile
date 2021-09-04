@@ -2,6 +2,8 @@ ARG VERSION=v0.15.0-beta
 
 FROM golang:1.15-alpine as builder
 
+ARG VERSION
+
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
 ENV GODEBUG netdns=cgo
@@ -14,7 +16,7 @@ RUN apk add --no-cache --update alpine-sdk \
     git \
     make \
 && mkdir -p /go/src/github.com/lightningnetwork/loop \
-&&  git clone --branch $VERSION --depth=1 https://github.com/lightninglabs/loop /go/src/github.com/lightningnetwork/loop \    
+&&  git clone --depth=1 --branch $VERSION https://github.com/lightninglabs/loop /go/src/github.com/lightningnetwork/loop \    
 &&  cd /go/src/github.com/lightningnetwork/loop \
 &&  make install
 
