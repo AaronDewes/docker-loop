@@ -21,7 +21,7 @@ jobs:
 
       - name: Set env variables
         run: |
-          echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')" >> $GITHUB_ENV
+          echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
           IMAGE_NAME="${GITHUB_REPOSITORY#*/}"
           echo "IMAGE_NAME=${IMAGE_NAME//docker-/}" >> $GITHUB_ENV
 
