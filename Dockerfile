@@ -32,3 +32,5 @@ COPY --from=builder /go/bin/loop /bin/
 RUN apk add --no-cache \
     bash \
     ca-certificates
+
+ENTRYPOINT [ "/bin/loopd" ]
