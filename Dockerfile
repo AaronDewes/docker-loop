@@ -1,6 +1,6 @@
-ARG VERSION=v0.15.0-beta
+ARG VERSION=v0.16.0-beta
 
-FROM golang:1.15-alpine as builder
+FROM golang:1.17-alpine as builder
 
 ARG VERSION
 
