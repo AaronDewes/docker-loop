@@ -9,10 +9,6 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+
       - v[0-9]+.[0-9]+.[0-9]+-*
 
-env:
-  DOCKER_CLI_EXPERIMENTAL: enabled
-  TAG_FMT: '^refs/tags/(((.?[0-9]+){3,4}))$'
-
 jobs:
   build-amd64:
     name: Build image (AMD64)
@@ -43,8 +39,9 @@ jobs:
                 docker buildx build \
                 --platform linux/amd64 \
                 --build-arg VERSION=$TAG \
-                --tag ghcr.io/${{ secrets.DOCKER_CONTAINER_USERNAME }}/$IMAGE_NAME:$BRANCH-amd64 \
+                --tag ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME:$TAG-amd64 \
                 --output "type=registry" ./
+
   build-arm64:
     name: Build image (ARM64)
     runs-on: self-hosted
@@ -67,7 +64,7 @@ jobs:
                 docker buildx build \
                 --platform linux/arm64 \
                 --network host \
-                --tag ghcr.io/${{ secrets.DOCKER_CONTAINER_USERNAME }}/$IMAGE_NAME:$BRANCH-arm64 \
+                --tag ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME:$TAG-arm64 \
                 --output "type=registry" ./
 
   create-manifest:
