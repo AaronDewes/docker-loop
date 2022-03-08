@@ -21,7 +21,7 @@ RUN apk add --no-cache --update alpine-sdk \
 &&  make install
 
 # Start a new, final image to reduce size.
-FROM alpine as final
+FROM gcr.io/distroless/base as final
 
 # Expose lnd ports (server, rpc).
 EXPOSE 8081 11010
