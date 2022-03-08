@@ -30,9 +30,4 @@ EXPOSE 8081 11010
 COPY --from=builder /go/bin/loopd /bin/
 COPY --from=builder /go/bin/loop /bin/
 
-# Add bash.
-RUN apk add --no-cache \
-    bash \
-    ca-certificates
-
 ENTRYPOINT [ "/bin/loopd" ]
