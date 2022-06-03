@@ -1,6 +1,6 @@
-ARG VERSION=v0.17.0-beta
+ARG VERSION=v0.18.0-beta
 
-FROM golang:1.17-alpine as builder
+FROM golang:1.18-alpine as builder
 
 ARG VERSION
 
@@ -8,10 +8,7 @@ ARG VERSION
 # queries required to connect to linked containers succeed.
 ENV GODEBUG netdns=cgo
 
-# Explicitly turn on the use of modules (until this becomes the default).
-ENV GO111MODULE on
-
-# Install dependencies and install/build lnd.
+# Install dependencies and install/build loop.
 RUN apk add --no-cache --update alpine-sdk \
     git \
     make \
@@ -23,7 +20,7 @@ RUN apk add --no-cache --update alpine-sdk \
 # Start a new, final image to reduce size.
 FROM gcr.io/distroless/base as final
 
-# Expose lnd ports (server, rpc).
+# Expose loop ports (server, rpc).
 EXPOSE 8081 11010
 
 # Copy the binaries and entrypoint from the builder image.
