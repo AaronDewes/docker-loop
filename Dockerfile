@@ -1,4 +1,4 @@
-ARG VERSION=v0.18.0-beta
+ARG VERSION=v0.19.1-beta
 
 FROM golang:1.18-alpine as builder
 
@@ -13,7 +13,7 @@ RUN apk add --no-cache --update alpine-sdk \
     git \
     make \
 && mkdir -p /go/src/github.com/lightningnetwork/loop \
-&&  git clone --depth=1 --branch $VERSION https://github.com/lightninglabs/loop /go/src/github.com/lightningnetwork/loop \    
+&&  git clone --depth=1 --branch $VERSION https://github.com/lightninglabs/loop /go/src/github.com/lightningnetwork/loop \
 &&  cd /go/src/github.com/lightningnetwork/loop \
 &&  make install
 
