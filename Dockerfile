@@ -1,4 +1,4 @@
-ARG VERSION=v0.19.1-beta
+ARG VERSION=v0.20.2-beta
 
 FROM golang:1.18-alpine as builder
 
